@@ -1,0 +1,4 @@
+{
+  "commands.tmm_tts.autospeak.get": "Autospeak is currently %s",
+  "commands.tmm_tts.autospeak.set": "Autospeak is now %s"
+}

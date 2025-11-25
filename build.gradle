@@ -51,6 +51,7 @@ repositories {
 fabricApi {
 	configureDataGeneration {
 		client = true
+        modId = "tmm_tts"
 	}
 }
 
@@ -93,6 +94,12 @@ dependencies {
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
     modImplementation("maven.modrinth:text-to-voice:${texttovoice_version}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${fabriclangkotlin_version}")
+}
+
+loom {
+    runConfigs.forEach {
+        it.ideConfigGenerated = true
+    }
 }
 
 processResources {
