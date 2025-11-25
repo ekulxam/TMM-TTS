@@ -4,10 +4,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
+import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.tree.CommandNode;
 import de.maxhenkel.voicechat.FabricVoicechatClientMod;
 import de.maxhenkel.voicechat.FabricVoicechatMod;
-import de.maxhenkel.voicechat.Voicechat;
 import net.fabricmc.api.ClientModInitializer;
 
 import net.fabricmc.api.ModInitializer;
@@ -24,6 +24,7 @@ public class TMMTTSClient implements ClientModInitializer, ClientCommandRegistra
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public static boolean autospeak = false;
+    public static boolean initializingAgain = false;
 
 	@Override
 	public void onInitializeClient() {
@@ -56,7 +57,7 @@ public class TMMTTSClient implements ClientModInitializer, ClientCommandRegistra
                 }).build();
 
         CommandNode<FabricClientCommandSource> triggerVoicechatReconnection = literal("reconnect")
-                .executes(context -> reloadVoiceChat())
+                .executes(TMMTTSClient::reloadVoiceChat)
                 .build();
 
         dispatcher.getRoot().addChild(tmmtts);
@@ -65,9 +66,11 @@ public class TMMTTSClient implements ClientModInitializer, ClientCommandRegistra
         tmmtts.addChild(triggerVoicechatReconnection);
     }
 
-    private static int reloadVoiceChat() {
+    private static int reloadVoiceChat(CommandContext<FabricClientCommandSource> context) {
         FabricLoader floader = FabricLoader.getInstance();
-        boolean success = false;
+        boolean mainSuccess = false;
+        boolean clientSuccess = false;
+        initializingAgain = true;
 
         try {
             floader.invokeEntrypoints("main", ModInitializer.class, modInitializer -> {
@@ -75,7 +78,7 @@ public class TMMTTSClient implements ClientModInitializer, ClientCommandRegistra
                     modInitializer.onInitialize();
                 }
             });
-            success = true;
+            mainSuccess = true;
         } catch (Throwable throwable) {
             LOGGER.error("An error occurred while executing FabricVoicechatMod#onInitialize!", throwable);
         }
@@ -86,11 +89,14 @@ public class TMMTTSClient implements ClientModInitializer, ClientCommandRegistra
                     modInitializer.onInitializeClient();
                 }
             });
-            success = true;
+            clientSuccess = true;
         } catch (Throwable throwable) {
             LOGGER.error("An error occurred while executing FabricVoicechatClientMod#onInitializeClient!", throwable);
         }
 
-        return success ? 1 : 0;
+        initializingAgain = false;
+
+        context.getSource().sendFeedback(Text.stringifiedTranslatable("commands.tmm_tts.reconnect.result", mainSuccess, clientSuccess));
+        return mainSuccess || clientSuccess ? 1 : 0;
     }
 }

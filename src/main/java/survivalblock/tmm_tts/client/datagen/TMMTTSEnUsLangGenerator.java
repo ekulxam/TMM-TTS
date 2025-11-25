@@ -16,5 +16,6 @@ public class TMMTTSEnUsLangGenerator extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add("commands.tmm_tts.autospeak.set", "Autospeak is now %s");
         translationBuilder.add("commands.tmm_tts.autospeak.get", "Autospeak is currently %s");
+        translationBuilder.add("commands.tmm_tts.reconnect.result", "Reconnection was completed with the following result: main (%s), client (%s)");
     }
 }

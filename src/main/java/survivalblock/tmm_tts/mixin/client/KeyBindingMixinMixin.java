@@ -31,10 +31,10 @@ public class KeyBindingMixinMixin {
 	private boolean allowChatAndCommand(KeyBinding one, KeyBinding two, Operation<Boolean> original) {
         GameOptions gameOptions = MinecraftClient.getInstance().options;
         if (tmm_tts$isEitherEqual(one, two, gameOptions.chatKey)) {
-            return true;
+            return false;
         }
         if (tmm_tts$isEitherEqual(one, two, gameOptions.commandKey)) {
-            return true;
+            return false;
         }
         return original.call(one, two);
 	}

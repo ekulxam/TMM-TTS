@@ -6,11 +6,12 @@
     "minVersion": "0.5.0"
   },
   "mixins": [
-    "TMMConfigMixin"
   ],
   "client": [
     "client.ChatScreenMixin",
-    "client.KeyBindingMixinMixin"
+    "client.KeyBindingMixinMixin",
+    "client.TMMConfigMixin",
+    "client.VoicechatMixin"
   ],
   "injectors": {
     "defaultRequire": 1
