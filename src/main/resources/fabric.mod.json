@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "tmm_tts",
+	"version": "${version}",
+	"name": "TrainMurderMystery - Text to Speech edition",
+	"description": "Harpy Express x Text to Voice interop",
+	"authors": [
+		"Survivalblock"
+	],
+	"contact": {
+		"homepage": "https://github.com/ekulxam/TMM-TTS",
+		"sources": "https://github.com/ekulxam/TMM-TTS",
+        "issues": "https://github.com/ekulxam/TMM-TTS/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/tmm_tts/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "survivalblock.tmm_tts.TMMTTS"
+		],
+		"fabric-datagen": [
+          "survivalblock.tmm_tts.TMMTTSDataGenerator"
+		]
+	},
+	"mixins": [
+		"tmm_tts.mixins.json"
+	],
+	"depends": {
+        "fabricloader": "*",
+        "minecraft": "~1.21.1",
+        "java": ">=21",
+        "fabric-api": "*"
+	},
+	"suggests": {
+        "trainmurdermystery": "*",
+		"ttvoice": "*"
+	}
+}

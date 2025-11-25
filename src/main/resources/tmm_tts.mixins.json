@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "survivalblock.tmm_tts.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "TMMConfigMixin"
+  ],
+  "client": [
+    "client.KeyBindingMixinMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
