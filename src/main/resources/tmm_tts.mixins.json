@@ -2,10 +2,14 @@
   "required": true,
   "package": "survivalblock.tmm_tts.mixin",
   "compatibilityLevel": "JAVA_21",
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
   "mixins": [
     "TMMConfigMixin"
   ],
   "client": [
+    "client.ChatScreenMixin",
     "client.KeyBindingMixinMixin"
   ],
   "injectors": {

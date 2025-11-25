@@ -16,11 +16,11 @@
 	"icon": "assets/tmm_tts/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-          "survivalblock.tmm_tts.TMMTTS"
+		"client": [
+          "survivalblock.tmm_tts.client.TMMTTSClient"
 		],
 		"fabric-datagen": [
-          "survivalblock.tmm_tts.TMMTTSDataGenerator"
+          "survivalblock.tmm_tts.client.datagen.TMMTTSDataGenerator"
 		]
 	},
 	"mixins": [
