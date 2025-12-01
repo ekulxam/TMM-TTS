@@ -13,14 +13,7 @@ public class ChatScreenMixin {
 
     @ModifyExpressionValue(method = "sendMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ChatScreen;normalize(Ljava/lang/String;)Ljava/lang/String;"))
     private String autospeak(String value) {
-        boolean speaking = CONFIG.autospeak && !value.startsWith("/");
-
-        if (value.startsWith("/speak ")) {
-            value = value.substring("/speak ".length());
-            speaking = true;
-        }
-
-        if (!speaking) {
+        if (!CONFIG.autospeak || value.startsWith("/")) {
             return value;
         }
 
