@@ -1,4 +1,4 @@
-package survivalblock.tmm_tts.mixin.client;
+package survivalblock.tmm_tts.mixin.client.compat.ttvoice;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.gui.screen.ChatScreen;

@@ -1,4 +1,4 @@
-package survivalblock.tmm_tts.mixin.client;
+package survivalblock.tmm_tts.mixin.client.compat.ttvoice;
 
 import com.flooferland.espeak.Espeak;
 import org.spongepowered.asm.mixin.Mixin;

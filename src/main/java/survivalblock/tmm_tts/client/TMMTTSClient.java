@@ -4,14 +4,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
-import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.tree.CommandNode;
-import de.maxhenkel.voicechat.FabricVoicechatClientMod;
-import de.maxhenkel.voicechat.FabricVoicechatMod;
-import folk.sisby.kaleido.lib.quiltconfig.api.Config;
 import net.fabricmc.api.ClientModInitializer;
 
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.loader.api.FabricLoader;
@@ -58,47 +53,8 @@ public class TMMTTSClient implements ClientModInitializer, ClientCommandRegistra
                     return 1;
                 }).build();
 
-        CommandNode<FabricClientCommandSource> triggerVoicechatReconnection = literal("reconnect")
-                .executes(TMMTTSClient::reloadVoiceChat)
-                .build();
-
         dispatcher.getRoot().addChild(tmmtts);
 
         tmmtts.addChild(toggleAutospeak);
-        tmmtts.addChild(triggerVoicechatReconnection);
-    }
-
-    private static int reloadVoiceChat(CommandContext<FabricClientCommandSource> context) {
-        FabricLoader floader = FabricLoader.getInstance();
-        boolean mainSuccess = false;
-        boolean clientSuccess = false;
-        initializingAgain = true;
-
-        try {
-            floader.invokeEntrypoints("main", ModInitializer.class, modInitializer -> {
-                if (modInitializer instanceof FabricVoicechatMod) {
-                    modInitializer.onInitialize();
-                }
-            });
-            mainSuccess = true;
-        } catch (Throwable throwable) {
-            LOGGER.error("An error occurred while executing FabricVoicechatMod#onInitialize!", throwable);
-        }
-
-        try {
-            floader.invokeEntrypoints("client", ClientModInitializer.class, modInitializer -> {
-                if (modInitializer instanceof FabricVoicechatClientMod) {
-                    modInitializer.onInitializeClient();
-                }
-            });
-            clientSuccess = true;
-        } catch (Throwable throwable) {
-            LOGGER.error("An error occurred while executing FabricVoicechatClientMod#onInitializeClient!", throwable);
-        }
-
-        initializingAgain = false;
-
-        context.getSource().sendFeedback(Text.stringifiedTranslatable("commands.tmm_tts.reconnect.result", mainSuccess, clientSuccess));
-        return mainSuccess || clientSuccess ? 1 : 0;
     }
 }

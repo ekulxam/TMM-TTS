@@ -1,6 +1,7 @@
 {
   "required": true,
-  "package": "survivalblock.tmm_tts.mixin",
+  "package": "survivalblock.tmm_tts.mixin.client",
+  "plugin": "survivalblock.tmm_tts.client.TMMTTSMixinConfigPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixinextras": {
     "minVersion": "0.5.0"
@@ -8,11 +9,10 @@
   "mixins": [
   ],
   "client": [
-    "client.ChatScreenMixin",
-    "client.EspeakPositionInvoker",
-    "client.EspeakSpeakerMixin",
-    "client.KeyBindingMixinMixin",
-    "client.VoicechatMixin"
+    "compat.ttvoice.ChatScreenMixin",
+    "compat.ttvoice.EspeakPositionInvoker",
+    "compat.ttvoice.EspeakSpeakerMixin",
+    "compat.trainmurdermystery.KeyBindingMixinMixin"
   ],
   "injectors": {
     "defaultRequire": 1
