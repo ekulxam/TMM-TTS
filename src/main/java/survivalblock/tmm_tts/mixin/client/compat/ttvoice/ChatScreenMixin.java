@@ -13,11 +13,27 @@ public class ChatScreenMixin {
 
     @ModifyExpressionValue(method = "sendMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ChatScreen;normalize(Ljava/lang/String;)Ljava/lang/String;"))
     private String autospeak(String value) {
-        if (!CONFIG.autospeak || value.startsWith("/")) {
+        boolean speaking = CONFIG.autospeak && !value.startsWith("/");
+
+        if (value.startsWith("/speak ")) {
+            value = value.substring("/speak ".length());
+            speaking = true;
+        }
+
+        if (!speaking) {
             return value;
         }
 
-        return ("/speak <voice gender=\"%s\" variant=\"%d\"><prosody rate=\"%s\" pitch=\"%s\" range=\"%s\">" + value + "</prosody></voice>")
-                .formatted(CONFIG.synthesizedGender, CONFIG.synthesizedGenderVariant, CONFIG.relativizedSpeechRate(), CONFIG.relativizedPitch(), CONFIG.relativizedPitchRange());
+        if (value.endsWith("</prosody></voice>")) {
+            value = value.substring(0, value.length() - "</prosody></voice>".length());
+            // giant regex my beloved -iri
+//            value = value.replaceFirst("<voice gender=\"[a-z]+\" variant=\"[0-9]+\"><prosody rate=\"[+-][0-9.]+%\" pitch=\"[+-][0-9.]+%\" range=\"[+-][0-9.]+%\">", "");
+            value = value.substring(value.indexOf('>')+1); // destroy <voice>
+            value = value.substring(value.indexOf('>')+1); // destroy <prosody>
+        }
+
+        return "/speak <voice gender=\"%s\" variant=\"%d\"><prosody rate=\"%s\" pitch=\"%s\" range=\"%s\">"
+                .formatted(CONFIG.synthesizedGender, CONFIG.synthesizedGenderVariant, CONFIG.relativizedSpeechRate(), CONFIG.relativizedPitch(), CONFIG.relativizedPitchRange())
+                + value + "</prosody></voice>";
     }
 }
