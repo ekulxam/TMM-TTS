@@ -8,6 +8,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.tree.CommandNode;
 import de.maxhenkel.voicechat.FabricVoicechatClientMod;
 import de.maxhenkel.voicechat.FabricVoicechatMod;
+import folk.sisby.kaleido.lib.quiltconfig.api.Config;
 import net.fabricmc.api.ClientModInitializer;
 
 import net.fabricmc.api.ModInitializer;
@@ -48,6 +49,7 @@ public class TMMTTSClient implements ClientModInitializer, ClientCommandRegistra
                         booleanArgument("maybespeak")
                                 .executes(context -> {
                                     TMMTTSClient.CONFIG.autospeak = context.getArgument("maybespeak", Boolean.class);
+                                    CONFIG.save();
                                     context.getSource().sendFeedback(Text.stringifiedTranslatable("commands.tmm_tts.autospeak.set", TMMTTSClient.CONFIG.autospeak));
                                     return 1;
                                 })

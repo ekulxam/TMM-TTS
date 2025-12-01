@@ -4,10 +4,13 @@ import com.flooferland.espeak.Espeak;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
+/**
+ * @author afamiliarquiet
+ */
 @Mixin(Espeak.Position.class)
 public interface EspeakPositionInvoker {
     @Invoker("<init>")
-    static Espeak.Position newPosition(Espeak.PositionType type, int start, int end) {
-        throw new AssertionError();
+    static Espeak.Position tmm_tts$invokeInit(Espeak.PositionType type, int start, int end) {
+        throw new AssertionError("Mixin invoker");
     }
 }

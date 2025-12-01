@@ -84,8 +84,7 @@ dependencies {
     modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
 
     // kaleido (holy silt i love not writing config stuff yipee -iri)
-    implementation 'folk.sisby:kaleido-config:0.3.3+1.3.2'
-    include 'folk.sisby:kaleido-config:0.3.3+1.3.2'
+    include(implementation("folk.sisby:kaleido-config:0.3.3+1.3.2"))
 
     // Runtime mods
     modLocalImplementation "com.terraformersmc:modmenu:${mod_menu_version}"

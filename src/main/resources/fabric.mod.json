@@ -7,6 +7,9 @@
 	"authors": [
 		"Survivalblock"
 	],
+    "contributors": [
+        "afamiliarquiet"
+    ],
 	"contact": {
 		"homepage": "https://github.com/ekulxam/TMM-TTS",
 		"sources": "https://github.com/ekulxam/TMM-TTS",
@@ -14,7 +17,7 @@
 	},
 	"license": "MIT",
 	"icon": "assets/tmm_tts/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"client": [
           "survivalblock.tmm_tts.client.TMMTTSClient"

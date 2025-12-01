@@ -4,6 +4,9 @@ import folk.sisby.kaleido.api.WrappedConfig;
 import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
 import folk.sisby.kaleido.lib.quiltconfig.api.annotations.FloatRange;
 
+/**
+ * @author afamiliarquiet
+ */
 public class TMMTTSConfig extends WrappedConfig {
     @Comment("If enabled, all chat messages will be routed through /speak")
     public boolean autospeak = false;
