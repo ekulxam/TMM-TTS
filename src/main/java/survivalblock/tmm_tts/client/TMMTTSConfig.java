@@ -28,7 +28,8 @@ public class TMMTTSConfig extends WrappedConfig {
     public float pitchRange = 1f;
 
     public String relativized(float f) {
-        return (f >= 0 ? "+" : "-") + (100 * (f-1)) + "%";
+        f = f - 1;
+        return (f >= 0 ? "+" : "") + (100 * f) + "%";
     }
 
     // maybe not kaleido's forte but satisfactory
