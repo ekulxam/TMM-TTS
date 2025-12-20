@@ -12,7 +12,7 @@
     "compat.ttvoice.ChatScreenMixin",
     "compat.ttvoice.EspeakPositionInvoker",
     "compat.ttvoice.EspeakSpeakerMixin",
-    "compat.trainmurdermystery.KeyBindingMixinMixin"
+    "compat.wathe.KeyBindingMixinMixin"
   ],
   "injectors": {
     "defaultRequire": 1

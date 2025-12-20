@@ -71,7 +71,7 @@ dependencies {
 
     // Holy silt I have so many dependencies aaaaaaa
     // Harpy Express
-    modImplementation "maven.modrinth:harpy-express-mod:${project.trainmurdermystery_version}"
+    modImplementation "dev.doctor4t:wathe:${project.wathe_version}"
     // Ratatouille
     modImplementation "dev.upcraft.datasync:datasync-minecraft-${project.minecraft_version}-fabric:${project.datasync_version}"
     modImplementation "dev.doctor4t:ratatouille:${project.ratatouille_version}"

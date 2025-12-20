@@ -28,8 +28,8 @@ public class TMMTTSMixinConfigPlugin implements IMixinConfigPlugin {
             if (mixinClassName.contains("voicechat")) {
                 return FabricLoader.getInstance().isModLoaded("voicechat");
             }
-            if (mixinClassName.contains("trainmurdermystery")) {
-                return FabricLoader.getInstance().isModLoaded("trainmurdermystery");
+            if (mixinClassName.contains("wathe")) {
+                return FabricLoader.getInstance().isModLoaded("wathe");
             }
         }
         return true;

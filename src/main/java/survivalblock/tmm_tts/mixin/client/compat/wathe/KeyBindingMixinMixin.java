@@ -1,4 +1,4 @@
-package survivalblock.tmm_tts.mixin.client.compat.trainmurdermystery;
+package survivalblock.tmm_tts.mixin.client.compat.wathe;
 
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import java.util.Objects;
 
 /**
- * @see dev.doctor4t.trainmurdermystery.mixin.client.restrictions.KeyBindingMixin
+ * @see dev.doctor4t.wathe.mixin.client.restrictions.KeyBindingMixin
  * Wow, you're really making me do this huh
  * I've never had to use Mixin^2 with expressions
  */
@@ -23,7 +23,7 @@ public class KeyBindingMixinMixin {
 
     @SuppressWarnings({"MixinAnnotationTarget", "InvalidInjectorMethodSignature"}) // this does run
     @TargetHandler(
-            mixin = "dev.doctor4t.trainmurdermystery.mixin.client.restrictions.KeyBindingMixin",
+            mixin = "dev.doctor4t.wathe.mixin.client.restrictions.KeyBindingMixin",
             name = "shouldSuppressKey"
     )
 	@WrapOperation(method = "@MixinSquared:Handler", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;equals(Lnet/minecraft/client/option/KeyBinding;)Z"))
